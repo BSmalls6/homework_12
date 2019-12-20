@@ -1,14 +1,21 @@
 /* global moment */
 
 // When user clicks add-btn
-$("#bur").on("click", function(event) {
+$("#burger-submit").on("click", function(event) {
   event.preventDefault();
-
+console.log("burger submitteed");
   // Make a newChirp object
   var newBurger = {
     name: $("#name").val().trim(),
-    order: $("#burger-text").val().trim(),
+    orders: $("#burger-text").val().trim(),
   };
+
+  $(".delete").on("click", function(event){
+    event.preventDefault();
+
+  })
+
+
 
   console.log(newBurger);
 
@@ -19,9 +26,10 @@ $("#bur").on("click", function(event) {
 
       var row = $("<div>");
       row.addClass("burger");
-
+      row.addClass("delete")
       row.append("<p>" + newBurger.name + "Burger ordered by: </p>");
-      row.append("<p>" + newBurger.order + "</p>");
+      row.append("<p>" + newBurger.orders + "</p>");
+      row.append("<button>"+"Eat Burger"+"</button>")
 
       $("#newBurger-area").prepend(row);
 
@@ -43,7 +51,7 @@ $.get("/api/all", function(data) {
       row.addClass("burgers");
 
       row.append("<p>" + data[i].name + " Burger ordered by:</p>");
-      row.append("<p>" + data[i].order + "</p>");
+      row.append("<p>" + data[i].orders + "</p>");
 
       $("#newBurger-area").prepend(row);
 
