@@ -1,4 +1,17 @@
 /* global moment */
+$("#delete").on("click", function(event){
+  event.preventDefault();
+  var burger_name = $(this).data("id");
+    Burger.destroy({
+      where: {
+        name: burger_name
+      }
+    }).then(() => {
+      location.reload();
+      console.log("Order Canceled")
+    })
+  
+})
 
 // When user clicks add-btn
 $("#burger-submit").on("click", function(event) {
@@ -10,11 +23,7 @@ console.log("burger submitteed");
     orders: $("#burger-text").val().trim(),
   };
 
-  $(".delete").on("click", function(event){
-    event.preventDefault();
-
-  })
-
+  
 
 
   console.log(newBurger);
@@ -25,11 +34,10 @@ console.log("burger submitteed");
     .then(function() {
 
       var row = $("<div>");
-      row.addClass("burger");
       row.addClass("delete")
       row.append("<p>" + newBurger.name + "Burger ordered by: </p>");
       row.append("<p>" + newBurger.orders + "</p>");
-      row.append("<button>"+"Eat Burger"+"</button>")
+      row.append(`<button id="delete" data-id=${newBurger.name}>`+"Eat Burger"+"</button>")
 
       $("#newBurger-area").prepend(row);
 

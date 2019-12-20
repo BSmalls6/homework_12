@@ -10,6 +10,9 @@ var sequelize = new Sequelize("burgers_db", "root", "6starrating", {
   host: "localhost",
   port: 3306,
   dialect: "mysql",
+  define:{
+timestamps: false
+  },
   pool: {
     max: 5,
     min: 0,

@@ -10,7 +10,9 @@ var Burger = sequelize.define("burgers", {
   
   },
   orders: {
-  type:  Sequelize.STRING
+  type:  Sequelize.STRING,
+  defaultValue: ""
+
   }
 });
 
